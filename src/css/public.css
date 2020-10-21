@@ -1,0 +1,40 @@
+html,body,a,ul,ol,li,i,b,input,form,textarea,table,tr,em,strong,td,span,p,div,header,section,footer,dl,dt,dd,h1,h2,h3,h4,h5,h6{
+	margin:0; padding:0;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight: normal;color:#333333;
+}
+a{
+	text-decoration: none;color: #7d7d7d;cursor: pointer;
+}
+ul li,ol li{
+	list-style: none;
+}
+input{
+	outline: none;
+}
+select{
+	outline: none;
+}
+textarea{
+	outline: none;resize: none;
+}
+i{
+	font-style: normal;
+}
+em{
+	font-style: normal;
+}
+b,em{
+	font-weight: normal;
+}
+strong{
+	font-weight: normal;
+}
+img{
+	vertical-align: top;border: 0;
+}
+.clearfix::after{
+	content:"" ; display: block;visibility:hidden;overflow: hidden;clear:both;height:0;font-size: 0;
+}
+

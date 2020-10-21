@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <script src='../jquery/jquery.min.js'></script>
+   
+    <style>
+        html,body{
+            width:100%;background: #f9f9f9;font-size: 14px;
+        }
+        .wrap{
+            background: white;width:854px;height:550px;margin:10px auto 0;padding:0 34px;box-sizing: border-box;
+        }
+        .wrap .logo_area{
+            width:57px;height:57px;margin:0 auto 40px;background: #ff6700;
+        }
+        .wrap .title_item h4{
+            height:45px;line-height: 45px;font-size: 30px;font-weight: normal;text-align: center;
+        }
+        .regbox{
+            width:332px;height:248px;margin:0 auto;padding:30px 0;
+        }
+        .regbox .tit_normal{
+            padding-bottom: 5px;font-size: 14px;line-height: 20px;color:#333333;font-weight: normal;
+        }
+        .regbox .listwrap{
+           height:40px;border:1px solid #e8e8e8;
+            line-height: 40px;margin-bottom: 15px;
+        }
+        .regbox .listwrap p{
+            height:40px;font-size: 14px;float:left;width:276px;
+        }
+        .regbox .listwrap i{
+            font-size: 16px;text-align: center;float:left;width:40px;border-left:1px solid #e8e8e8;
+            box-sizing: border-box;
+        }
+        .regbox .region_text{
+            margin-top: -10px;margin-bottom: 15px;height:20px;line-height: 20px;
+        }
+        .cycode_box{
+           height:42px;
+        }
+        .listwrap input{
+            width:100%;height:100%;padding-left:14px;box-sizing: border-box;
+        }
+        .listwrap_inside{
+            padding-bottom: 15px;
+        }
+        .inputbg{
+            border:1px solid #ff6700;height:42px;
+        }
+        .cycode_box .tits{
+            width:54px; height:40px;padding-left:14px;padding-top:2px;display: inline-block;border-right:1px solid #e8e8e8;
+        }
+        .cycode_box .tits p{
+            height:40px;line-height: 40px;display: inline-block;
+        }
+        .cycode_box .tits i{
+            font-size: 12px;transform: scale(0.8);margin:17px 0px 0 5px;
+        }
+        .cycode_box input{
+         width:236px;height:20px;padding:10px;float: right;border:none;margin:1px 1px;
+        }
+        .fixed button{
+            height:42px;width:332px;background: #ff6700;text-align: center;line-height: 42px;border: none;
+            color:white;
+        }
+        .select-privacy{
+            color:#9d9d9d;text-align: center;padding-top:40px;height:39px;line-height: 39px;
+        }
+        .select-privacy a{
+            font-weight: bold;color:#333333;
+        }
+        .n-footer{
+            text-align: center;height:80px;width:100%;margin-top:10px;
+        }
+       .alert{
+           text-align: center;font-size: 16px;padding:2px;margin:-10px 2px 10px;display:none;
+       }
+       .alert-di{
+        background: palevioletred;color:red;
+       }
+       .alert-sc{
+           background: greenyellow;color:white;
+       }
+        .n-footer .nf-link ul li{
+           height:19px;display: inline-block;
+        }
+        .n-footer .nf-link ul li a{
+            display: block;height:19px;font-size:14px; padding:0 10px;border-right:1px solid #758bbc;
+        }
+        .n-footer .nf-link ul li a:last-child{
+            border-right:0;
+        }
+        .n-footer .nf-link ul li:first-child a{
+            color:#333333;
+        }
+        .n-footer .nf-link ul li a:hover{
+            color:#333333;
+        }
+        .n-footer .nf-intor{
+            font-size: 14px;color:#757575;margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrap'>
+        <div class='logo_area'></div>
+        <div class='title_item'><h4>注册小米账号</h4></div>
+        <div class='regbox'>
+            <h4 class='tit_normal'>手机号码</h4>
+            <div class='listwrap'>
+               <input type="text" class='' id='phonenum'>
+            </div>
+            <div class='region_text'>成功注册账号后，国家、地区将不能被修改</div>
+            <h4 class='tit_normal'>密码</h4>
+            <div class='listwrap_inside'>
+                <div class='inputbg'>
+                    <label class='labelbox' for>
+                        <div class='cycode_box'>
+                            <div class='tits'>
+                                <p id='select_cycode'>+86</p>
+                                <i class='iconfont'>&#xe601;</i>
+                            </div>
+                            <input type="text" placeholder="请输入密码" id='debug-log'>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class='alert' id='alert_info'></div>
+            <div class='fixed'><button class='submit_step'>立即注册</button></div>
+            <p class='select-privacy'>已阅读并同意：小米<a href="￥">用户协议</a>和<a href="￥">隐私政策</a></p>
+        </div>
+    </div>
+    <script>
+        var phone = $('#phonenum');
+        var pw = $("#debug-log");
+        var oBtn = $(".submit_step");
+        var oAlert = $(".alert")[0];
+        oBtn.click(function(){
+           
+           $.ajax({
+               url:'../php/regiest.php',
+               method:'post',
+               data:{
+                   phoneNum:phone[0].value,
+                   password:pw[0].value
+               },
+               success:function(res){
+                   var obj = JSON.parse(res);
+                   if(obj.code){
+                    oAlert.className = 'alert alert-di';
+                   }else{
+                    oAlert.className = 'alert alert-sc';
+                    setTimeout(function(){
+                        location.href = "./login.html";
+                    },1000);
+                   }
+                   oAlert.style.display = 'block';
+                   oAlert.innerHTML = obj.message;
+               },
+               error:function(msg){
+                   console.log(msg);
+               }
+           })
+        })
+    </script>
+    <div class='n-footer'>
+        <div class='nf-link'>
+            <ul>
+                <li><a href="">简体</a></li>
+                <li><a href="">繁体</a></li>
+                <li><a href="">English</a></li>
+                <li><a href="">常见问题</a></li>
+               
+            </ul>
+        </div>
+        <p class='nf-intor'>小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <script src='../jquery/jquery.min.js'></script>
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <style>
+        html,body{
+            width:100%;
+        }
+        .main{
+           width:1226px;margin:0 auto;
+             }
+             .site-header{
+                 height:100px;border-bottom: 2px solid #ff6700;width:100%;
+             }
+             .header-logo{
+                 margin-top:26px;float:left;margin-right:48px;
+             }
+             .has-more{
+                 margin-top:26px;float:left;
+             }
+             .has-more h2{
+                 font-size: 30px;line-height: 48px;color: #424242;float:left;
+             }
+             .has-more p{
+                 margin:20px 0 0 15px;font-size: 12px;color:#757575;line-height: 20px;height:20px;float:left;
+             }
+             .topbar-info{
+                 margin-top:30px;float:right;position: relative;
+             }
+             .topbar-info .user{
+                 height:40px;float:left;
+             }
+             .topbar-info .user:hover .name,.topbar-info .user:hover i{
+                color:#ff6700;
+             }
+             .topbar-info .user a{
+                 font-size: 12px;line-height: 40px;display: inline-block;width:110px;
+             }
+             .topbar-info .user a .name{
+                 width:75px;display: inline-block;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;
+             }
+             .topbar-info .user a i{
+                 float:right;width:24px;height:25px;font-size: 16px;text-align: center;line-height: 25px;margin-top:10px;
+             }
+             .user-menu-wrapper{
+                 width:110px;height:164px;display: none;z-index: 10;background: white;position: absolute;top:40px;left:0;
+             }
+             .user-menu-wrapper .user-menu{
+                padding:7px 0;box-shadow: 2px 2px 2px 3px #e4e4e4,-2px 2px 2px 3px #e4e4e4;
+             }
+             .user-menu-wrapper .user-menu li{
+                 width:110px;height:30px;display: inline-block;
+             }
+             .user-menu-wrapper .user-menu li:hover a{
+                color:#ff6700;
+             }
+             .user-menu-wrapper .user-menu li a{
+                 display: block;width:50px;height:24px;line-height: 24px;padding:3px 30px;
+             }
+             .sep{
+                 float:left;line-height: 40px;font-size: 12px;
+             }
+             .link-order{
+                 float:right;width:80px;height:40px;line-height: 40px;font-size: 12px;text-align: center;padding:0 5px;
+             }
+             .mi-cart{
+                 padding:38px 0;background: #f5f5f5;
+             }
+             .addonitems-tips{
+                text-align: right;
+                 font-size: 14px;
+                 color: rgba(0,0,0,.54);
+                 line-height: 20px;
+                 margin-bottom: 13px;
+             }
+             .cart-goods-list{
+                 background: white;
+             }
+             .list-head{
+                height: 70px;
+                line-height: 70px;
+                padding-right: 26px;
+                color: #424242;
+             }
+             .cart-container .container-main .cart-wrap .cart-goods-list .list-head .col{
+                 float:left;
+             }
+             .cart-goods-list .col-check{
+                 width:110px;
+             }
+             .col-check .icon-checkbox{
+                display: inline-block;width: 18px; height: 18px;line-height: 18px;border: 1px solid #e0e0e0;
+                margin-left: 24px;background-color: #fff;color: #fff;font-size: 20px;text-align: center;
+                vertical-align: middle;position: relative;top: -1px;cursor: pointer;
+             }
+             .cart-goods-list .list-head .icon-checkbox{
+                 margin-right:15px;
+             }
+             .list-head .col-img{
+                 width:120px;
+             }
+             .col-name{
+                 width:380px;
+             }
+             .cart-wrap .cart-goods-list .col-price{
+                 width:140px;padding-right:18px;text-align: center;color:#424242;
+             }
+             .cart-wrap .cart-goods-list .col-num{
+                 width:150px;text-align: center;color:#424242
+             }
+             .cart-wrap .cart-goods-list .col-price{
+                 width:140px;padding-right:18px;text-align: center;
+             }
+             .cart-wrap .cart-goods-list .col-total{
+                width: 120px;padding-right: 81px;text-align: right;
+             }
+             .cart-wrap .cart-goods-list .col-action{
+                 width: 80px;text-align: center;
+             }
+             .addonitems-tips{
+                 display: none;
+             }
+             .item-table{
+                display: table;border-collapse: collapse;border-spacing: 0;
+             }
+             .cart-goods-list .item-box{
+                padding: 15px 26px 15px 0;border-top: 1px solid #e0e0e0;
+             }
+             .item-table .item-row{
+                display: table-row;
+             }
+             .cart-goods-list .item-table .col{
+                display: table-cell;vertical-align: middle;
+             }
+             .item-table .col-total{
+                 color:#ff6700;
+             }
+             .cart-goods-list .item-box .col-img{
+                width: 80px;height: 80px;padding-right: 40px;overflow: hidden;
+             }
+             .cart-goods-list .item-box .tags{
+                 margin-bottom:6px;
+             }
+             .cart-goods-list .col-name .name{
+                 line-height: 1;margin-top: 8px;margin-bottom: 8px;font-size: 18px;font-weight: 400;
+                 text-overflow: ellipsis;white-space: nowrap;overflow: hidden;
+            }
+            .cart-wrap .cart-goods-list .item-box .col-price{
+                font-size: 16px;
+            }
+            .item-box .pre-info{
+                margin:0;font-size: 12px;color:#b0b0b0;
+            }
+            .cart-goods-list .col-num .change-goods-num a{
+                float:left;width:38px;height:38px;line-height: 38px;color:#757575;font-size: 20px;transition: all 0.3s;
+            }
+            .cart-goods-list .col-num .change-goods-num input{
+                float:left;width:70px;height:38px;line-height: 38px;padding: 0;color:#424242;font-size: 16px;text-align: center;box-sizing: border-box;
+            }
+            .item-box .col-action .del{
+                display: inline-block;width:24px;height:24px;text-align: center;border-radius: 12px;color:#757575;font-size: 16px;transition: all 0.3s;
+            }
+            .item-box .col-action .del:hover{
+                background: #e53935;color:white;
+            }
+            .cart-goods-list .icon-checkbox:hover{
+                color:#454545;
+            }
+            .cart-goods-list .icon-checkbox-selected{
+                border-color: #ff6700;background-color: #ff6700;color:white;
+            }
+            .container-main .raise-buy-box{
+                margin:20px 0;
+            }
+            .container-main .cart-bar{
+                height:50px;text-align:right;background: white;transition: background .3s ease,top .3s ease;position: relative;
+            }
+            .container-main .cart-bar .section-left{
+                float:left;
+            }
+            .cart-bar .back-shopping{
+                line-height: 50px;margin-left:32px;
+            }
+            .cart-bar .back-shopping:hover{
+                color:#ff6700;
+            }
+            .change-goods-num a:hover{
+                background:#e0e0e0;
+            }
+            .container-main .cart-bar a{
+                transition: color 0.3s;
+            }
+            .cart-bar .cart-totel{
+                margin-left:16px;padding-left:16px;border-left: 1px solid #eee;color:#757575;
+            }
+            .cart-bar .cart-totle i{
+                color:#ff6700;
+            }
+            .cart-bar .total-price{
+                padding-left:13px;color:#ff6700;
+            }
+            .cart-bar .total-price em{
+                font-size: 30px;
+            }
+            .container-main .cart-bar .btn{
+                width:200px;height:48px;font-size: 18px;margin-left:50px;vertical-align: top;line-height: 48px;
+            }
+            .cart-bar .no-select-tip{
+                width:200px;height:48px;position: absolute;top:-58px;right:0;background: white;border:1px solid #ff6700;color: #ff6700;text-align: center;line-height: 48px;
+            }
+            .cart-bar .no-select-tip .arrow-a{
+                bottom: -8px;margin-left: -10px;border-width: 8px 10px 0;border-color: #ff6700 rgba(0,0,0,0,) rgba(0,0,0,0);z-index: 1;
+            }
+            .cart-bar .no-select-tip .arrow{
+                display: block;width:0;height:0;border-style: solid dashed dashed;overflow: hidden;left:50%;position: absolute;
+            }
+            .cart-bar .no-select-tip .arrow-b{
+                bottom: -7px;margin-left:-8px;border-width: 7px 8px 0;border-color: white rgba(0,0,0,0,)  rgba(0,0,0,0);z-index: 2;
+            }
+            .btn-disabled{
+                background: #e0e0e0!important;
+                border-color: #e0e0e0!important;
+                color: #b0b0b0!important;
+                cursor: default!important;
+            }
+            .btn{
+                display: inline-block;width:150px;height:38px;padding: 0;margin: 0;border: 1px solid #b0b0b0;text-align: center;line-height: 38px;
+            }
+            .cart-recommend{
+                margin:60px 0 0;
+            }
+            .recommend-title{
+                position: relative;margin:0;height:50px;font-size: 30px;font-weight: 400;color:#757575;border-top:1px solid #e0e0e0;margin-block-start: 0.83em;
+                margin-block-end: 0.83em;margin-inline-start: 0px;margin-inline-end: 0px
+            }
+            .recommend-title span{
+                position: absolute;top:-20px;left:372px;height:40px;width:482px;line-height: 40px;text-align: center;display: block;background: #f5f5f5;
+            }
+            .container-main .empty-cart-top{
+                height:273px;padding-left:558px;overflow: hidden;
+                margin:65px 0 130px;color:#b0b0b0;
+                background: url(https://cdn.cnbj1.fds.api.mi-img.com/staticsfile/cart/cart-empty.png) no-repeat 124px 0;
+
+            }
+            .empty-cart-top .login-tip.is-login{
+                margin-top:70px;
+            }
+            .empty-cart-top .login-tip{
+                font-size: 36px;margin-top:50px;
+            }
+            .empty-cart-top .btn-shoping-yeslogin{
+                margin-top:15px;
+            }
+            .btn-primary{
+                background: #ff6700;border-color: #ff6700;color:white;
+            }
+            .empty-cart-top .btn{
+                width:170px;height:48px;line-height: 48px;
+            }
+            .cart-wrap{
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <div class="site-header">
+                <div class="main clearfix">
+                    <div class="header-logo"><a href="javasript:"><img src="../images/logo.png" alt=""></a></div>
+                    <div class="has-more">
+                        <h2>我的购物车</h2>
+                        <p>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</p>
+                    </div>
+                    <div class="site-topbar">
+                        <div class="topbar-info">
+                            <span class='user'><a href="$">
+                                <span class='name'>fhabhakgvbadjnjvnadv</span>
+                                <i class='iconfont'>&#xe601;</i>
+                                </a>
+                                <div class="user-menu-wrapper">
+                                <ul class='user-menu'>
+                                    <li><a href="$">个人中心</a></li>
+                                    <li><a href="$">个人中心</a></li>
+                                    <li><a href="$">个人中心</a></li>
+                                    <li><a href="$">个人中心</a></li>
+                                    <li><a href="$">个人中心</a></li>
+                                </ul>
+                            </div>
+                            </span>
+                            <span class='sep'>|</span>
+                            <a href="$" class='link link-order'>我的订单</a>
+                        </div>
+                        <script>
+                            $('.user').mouseenter(function(){
+                                $('.user-menu-wrapper').slideDown(200,'linear');
+                            }).mouseleave(function(){
+                                $('.user-menu-wrapper').slideUp(200,'linear');
+                            })
+                            
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mi-cart">
+            <div class="main">
+                <div class="cart-container">
+                    <div class="container-main">
+                        <div class="empty-cart-wrap">
+                            <div class="empty-cart-top">
+                                <h2 class='login-tip is-login'>您的购物车还是空的！</h2>
+                                <a href="" class='btn btn-primary btn-shopping-yeslogin'>马上去购物</a>
+                            </div>
+                            <div class="empty-cart-bottom">
+                                <div class="mi-recommend cart-recommend">
+                                    <h2 class='recommend-title'><span>为您推荐</span></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-wrap">
+                            <div class="addonitems-tips">
+                                <div class="tip"></div>
+                                <a href="javascript:void(0)">去凑单</a>
+                            </div>
+                            <div class="cart-goods-list">
+                                <div class="list-head clearfix">
+                                    <div class="col col-check">
+                                        <i class='iconfont icon-checkbox'>√</i>
+                                        全选
+                                    </div>
+                                    <div class="col col-img">&nbsp;</div>
+                                    <div class="col col-name">商品名称</div>
+                                    <div class="col col-price">单价</div>
+                                    <div class="col col-num">数量</div>
+                                    <div class="col col-total">小计</div>
+                                    <div class="col col-action">操作</div>
+                                </div>
+                                <div class="list-body">
+                                    
+                                </div>
+                            </div>
+                            <div class="raise-buy-box"></div>
+                            <div class="cart-bar clearfix">
+                                <div class="section-left">
+                                    <a href="" class='back-shopping'>继续购物</a>
+                                    <span class='cart-totle'>共
+                                        <i>2</i>件商品，已选择
+                                        <i>0</i>件
+                                    </span>
+                                </div>
+                                <span class='total-price'>合计
+                                    <em>0</em>元
+                                    <a href="" class='btn btn-a btn-disabled'>去结算</a>
+                                </span>
+                                <div class="no-select-tip">
+                                    请勾选需要结算的商品
+                                    <div class="arrow arrow-a"></div>
+                                    <div class="arrow arrow-b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-recommend">
+                            <div class="mi-recommend">
+                                <h2 class='recommend-title'>
+                                    <span>买购物车中商品的人还买了</span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            showShop();
+            function showShop(){
+                $.ajax({
+                    url:'http://127.0.0.1/xiaomi/src/interface/showlist.php',
+                    success:function(res){
+                        if(res.code){
+                            var arr = res.data;
+                            if(res.data){
+                                //如果有商品,显示
+                            $('.cart-wrap').show();
+                            $('.empty-cart-wrap').hide();
+                            //展示商品信息
+                            $('.list-body').empty();
+                            $.each(arr,function(index,item){
+                                $('.list-body').append(`
+                                <div class="list-item" id='${item.product_id}'>
+                                        <div class="item-box">
+                                            <div class="item-table">
+                                                <div class="item-row clearfix">
+                                                    <div class="col col-check">
+                                                        <i class='iconfont icon-checkbox icon-checkbox-selected'>√</i>
+                                                    </div>
+                                                    <div class="col col-img">
+                                                        <a href="./detailpage.html">
+                                                            <img src="${item.product_img}" alt="${item.product_name}" width='80px' height='80px'>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col col-name">
+                                                        <div class="tags"></div>
+                                                        <div class="tags"></div>
+                                                        <h3 class='name'><a href="javascript:;">${item.product_name}</a></h3>
+                                                    </div>
+                                                    <div class="col col-price">${item.product_price}元
+                                                        <p class='pre-info'></p>
+                                                    </div>
+                                                    <div class="col col-num">
+                                                        <div class="change-goods-num clearfix">
+                                                           <a href="javascript:;" class='subtract'>-</a>
+                                                            <input type="text" autocomplete='off' class='goods-num' value='${item.product_num}'>
+                                                            <a href="javascript:;" class='add'>+</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-total">${item.product_price*item.product_num}元
+                                                        <div class="pre-info"></div>
+                                                    </div>
+                                                    <div class="col col-action">
+                                                        <a href="javascript:;" class='del'>×</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `);
+                            })
+                            }
+                            $(function(){
+                               $('.list-head .col-check').on('click','i',function(){
+                                   if($(this).hasClass('icon-checkbox-selected')){
+                                           $('.col-check i').removeClass('icon-checkbox-selected');
+                                       }else{
+                                           $('.col-check i').addClass('icon-checkbox-selected');
+                                       }
+                               });
+                               $('.item-table .col-check').on('click','i',function(){
+                                   // if(!$(this).siblings().hasClass('icon-checkbox-selected')){
+                                   //     head = 0;
+                                   // }
+                                       if($(this).hasClass('icon-checkbox-selected')){
+                                           $(this).removeClass('icon-checkbox-selected');
+                                           $('.cart-bar .total-price em').html(0);
+                                           $('.list-head .col-check i').removeClass('icon-checkbox-selected');
+                                       }else{
+                                           $(this).addClass('icon-checkbox-selected');
+                                           $('.cart-bar .total-price em').html($('.item-row .col-total')[0].innerText);
+                                       }
+                               });
+                               });
+                                           }else{
+                                               //如果没有商品,table隐藏,div显示
+                                               $('.cart-wrap').hide();
+                                               $('.empty-cart-wrap').show();
+                                           }
+                         },
+                    dataType:'json',
+                    cache:false
+                })
+            };
+            // 点击+增加一个商品数量,点击-减少一个商品数量
+            $('.list-body').click(function(e){
+                var target = e.target;
+                if(target.className == 'subtract' || target.className == 'add'){
+                    // 点击+增加一个商品数量,点击-减少一个商品数量
+                    $.ajax({
+                        url:'http://127.0.0.1/xiaomi/src/interface/updatewq.php',
+                        data:{
+                            type:target.className,
+                            id:$(target).parents('.list-item').attr('id')
+                        },
+                        success:function(res){
+                            if(res.code){
+                                showShop();
+                            }
+                        },
+                        dataType:'json'
+                    })
+                }else if(target.className == 'del'){
+                    // 点击删除按钮删除一个商品
+                    $.ajax({
+                        url:'http://127.0.0.1/xiaomi/src/interface/delwq.php',
+                        data:{
+                            id:$(target).parents('.list-item').attr('id')
+                        },
+                        success:function(res){
+                            console.log(res)
+                            if(res.code){
+                                showShop();
+                            }
+                        },
+                        dataType:'json'
+                    })
+                }
+            });
+            $('.list-body').on('blur','input',function(){
+                $.ajax({
+                    url:'http://127.0.0.1/xiaomi/src/interface/inputwq.php',
+                    data:{
+                        val: $(this).val(),
+                        id:$(this).parents('.list-item').attr('id')
+                    },
+                    success:function(res){
+                        console.log('po');
+                        if(res.code){
+                            showShop();
+                        }
+                    },
+                    dataType:'json'
+                })
+            })
+            
+        </script>
+        <script>
+           
+        </script>
+    </div>
+</body>
+</html>

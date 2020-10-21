@@ -1,0 +1,37 @@
+{
+    "data":[
+        {
+            "id":"1",
+            "img":"../images/detail-1.jpg",
+            "name":"小米10至尊纪念版",
+            "price":"5599",
+            "de1":"../images/detail-1.jpg",
+            "de2":"../images/detail-2.jpg",
+            "de3":"../images/detail-3.jpg",
+            "de4":"../images/detail-4.jpg",
+            "de5":"../images/detail-5.jpg"
+        },
+        {
+            "id":"2",
+            "img":"../images/detail2-1.jpg",
+            "name":"Redmi K30 至尊纪念版",
+            "price":"2499",
+            "de1":"../images/detail2-1.jpg",
+            "de2":"../images/detail2-2.jpg",
+            "de3":"../images/detail2-3.jpg",
+            "de4":"../images/detail2-4.jpg",
+            "de5":"../images/detail2-5.jpg"
+        },
+        {
+            "id":"3",
+            "img":"../images/detail3-1.jpg",
+            "name":"腾讯黑鲨游戏手机3S",
+            "price":"3999",
+            "de1":"../images/detail3-1.jpg",
+            "de2":"../images/detail3-2.jpg",
+            "de3":"../images/detail3-3.jpg",
+            "de4":"../images/detail3-4.jpg",
+            "de5":"../images/detail3-5.jpg"
+        }
+    ]
+}
