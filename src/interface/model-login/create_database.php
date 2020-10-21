@@ -1,6 +1,6 @@
 <?php
 
-require('./connect.php');
+require('../model/connect.php');
 
 //创建数据库
 $sql = "CREATE DATABASE user";

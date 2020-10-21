@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/public.css">
+    <!-- <link rel="stylesheet" href="../css/login.css"> -->
     <link rel="stylesheet" href="../font/iconfont.css">
     <script src="../jquery/jquery.min.js"></script>
+    <script src='../jquery/jquery.cookie.js'></script>
     <style>
         html,body{
             width:100%;
@@ -117,7 +119,7 @@
 </head>
 <body>
     <div class='h_logo'>
-        <a href="./index.html"><div class='logo_img'></div><div class='logo_bank'><h1>小米商城</h1><span>让每个人都能享受科技的乐趣</span></div></a>
+        <a href="./index.html"><div class='logo_img'><img src="../images/logo.png" alt=""></div><div class='logo_bank'><h1>小米商城</h1><span>让每个人都能享受科技的乐趣</span></div></a>
     </div>
   <div class='login_banner'><a href="#"  onclick="return false"></a></div>
     <div class="login">
@@ -136,6 +138,13 @@
                 <div class='reg_links'><a href="./regiest.html">立即注册</a><span>|</span><a href="">忘记密码？</a></div>
             </form>
             <script>
+                console.log($.cookie('password'));
+                $(function(){
+                    if($.cookie('flag')=='true'){
+                    $("#phone_log").val($.cookie('user'));
+                    $("#debug_log").val($.cookie('password'));
+                   }
+                })
                 var phone = $('#phone_log');
                 var pw = $("#debug_log");
                 var oBtn = $('.sub');
@@ -155,21 +164,30 @@
                 })
                 oBtn.click(function(e){
                     var e = e || window.event;
-            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                   e.preventDefault ? e.preventDefault() : e.returnValue = false;
                    $.ajax({
-                       url:'../php/login.php',
+                       url:'http://127.0.0.1/xiaomi/src/php/login.php',
                        method:'post',
                        data:{
                            phoneNum:phone[0].value,
                            password:pw[0].value
                        },
                        success:function(res){
-                        console.log(res)
+                        console.log(res);
                            var obj = JSON.parse(res);
                            if(obj.code){
                             oAlert.className = 'alert alert-di';
+                            $.cookie('flag','false',{expires:-1},{path:'/'});
+                            $.cookie('user',phone[0].value,{expires:-1});
+                            $.cookie('password',pw[0].value,{expires:-1});
                            }else{
                             oAlert.className = 'alert alert-sc';
+                            $.cookie('flag','true',{expires:7},{path:'/'});
+                            $.cookie('user',phone[0].value,{expires:7});
+                            $.cookie('password',pw[0].value,{expires:7});
+                            setTimeout(function(){
+                             location.href = "./index.html";
+                            },1000);
                            }
                            oAlert.style.display = 'block';
                            oAlert.innerHTML = obj.message;

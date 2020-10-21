@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/public.css">
     <script src='../jquery/jquery.min.js'></script>
     <link rel="stylesheet" href="../font/iconfont.css">
+    <script src='../jquery/jquery.cookie.js'></script>
     <style>
         html,body{
             width:100%;
@@ -279,7 +280,7 @@
                     </div>
                     <div class="site-topbar">
                         <div class="topbar-info">
-                            <span class='user'><a href="$">
+                            <span class='user user-active'><a href="$">
                                 <span class='name'>fhabhakgvbadjnjvnadv</span>
                                 <i class='iconfont'>&#xe601;</i>
                                 </a>
@@ -315,7 +316,7 @@
                         <div class="empty-cart-wrap">
                             <div class="empty-cart-top">
                                 <h2 class='login-tip is-login'>您的购物车还是空的！</h2>
-                                <a href="" class='btn btn-primary btn-shopping-yeslogin'>马上去购物</a>
+                                <a href="./index.html" class='btn btn-primary btn-shopping-yeslogin'>马上去购物</a>
                             </div>
                             <div class="empty-cart-bottom">
                                 <div class="mi-recommend cart-recommend">
@@ -377,6 +378,25 @@
             </div>
         </div>
         <script>
+            num();
+            function num(){
+                $.ajax({
+                    url:'http://127.0.0.1/xiaomi/src/interface/showlist.php',
+                    success:function(res){
+                        var number = 0;
+                        if(res.code){
+                            var shoparr = res.data;
+                            if(shoparr){
+                                $.each(shoparr,function(i,val){
+                                    number += val.product_price*val.product_num;
+                           })
+                           $('.total-price').children('em').html(number);
+                            }
+                        }
+                    },
+                    dataType:'json'
+                });
+            };
             showShop();
             function showShop(){
                 $.ajax({
@@ -433,11 +453,14 @@
                             })
                             }
                             $(function(){
+                                $('.col-check i').addClass('icon-checkbox-selected');
                                $('.list-head .col-check').on('click','i',function(){
                                    if($(this).hasClass('icon-checkbox-selected')){
                                            $('.col-check i').removeClass('icon-checkbox-selected');
+                                           $('.cart-bar .total-price em').html(0);
                                        }else{
                                            $('.col-check i').addClass('icon-checkbox-selected');
+                                           
                                        }
                                });
                                $('.item-table .col-check').on('click','i',function(){
@@ -446,11 +469,11 @@
                                    // }
                                        if($(this).hasClass('icon-checkbox-selected')){
                                            $(this).removeClass('icon-checkbox-selected');
-                                           $('.cart-bar .total-price em').html(0);
+                                          // $('.cart-bar .total-price em').html($('.total-price').children('em').html()-$('.item-row .col-total').html());
                                            $('.list-head .col-check i').removeClass('icon-checkbox-selected');
                                        }else{
                                            $(this).addClass('icon-checkbox-selected');
-                                           $('.cart-bar .total-price em').html($('.item-row .col-total')[0].innerText);
+                                           //$('.cart-bar .total-price em').html($('.item-row .col-total').html()+$('.total-price').children('em').html());
                                        }
                                });
                                });
@@ -477,6 +500,7 @@
                         },
                         success:function(res){
                             if(res.code){
+                                num();
                                 showShop();
                             }
                         },
@@ -492,6 +516,7 @@
                         success:function(res){
                             console.log(res)
                             if(res.code){
+                                num();
                                 showShop();
                             }
                         },
@@ -509,6 +534,7 @@
                     success:function(res){
                         console.log('po');
                         if(res.code){
+                            num();
                             showShop();
                         }
                     },
