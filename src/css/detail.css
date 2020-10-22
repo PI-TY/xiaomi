@@ -143,7 +143,7 @@ nav .nav2 span.car a{
     display:inline-block; height:40px;cursor: pointer;width:100px;text-align: center;background:#424242;
 }
 
-nav .nav2 span.car a:hover{
+nav .nav2 span.car:hover a{
     background:white;
 }
 a{
@@ -223,8 +223,8 @@ a{
 }.btn-primary:hover{
     background: #f25807;
 }
-.my-bullet-active{
-    background: #a3a3a3;
+span.my-bullet-active{
+    background: orange;
     opacity: 1;
   }
 .app{
@@ -306,6 +306,10 @@ a{
 }
 .swiper-container .swiper-pagination .swiper-pagination-bullet:first-child{
     margin-left:160px;
+}
+.my-bullet-active{
+    background: #ff6600;
+    opacity: 1;
 }
 .mi-detail .product-con{
     margin-left:20px;width:600px;height:1533px;float:right;
@@ -485,3 +489,119 @@ a{
 .product-detail .title h3{
     font-size: 20px;color: #333333;padding:22px 0;height:33px;line-height: 33px;
 }
+.foot{
+    background: white;text-align: center;overflow: hidden;
+    }
+    .foot .service{
+        width:1260px;height:80px;padding:27.5px 0;box-sizing: border-box;border-bottom: 1px solid #e0e0e0;
+    }
+    .foot .service ul li{
+        width:242.5px;height:25px;border-right:1px solid #e0e0e0;float:left;
+    }
+    .foot .service ul li a{
+        color:#616161;
+    }
+    .foot .service ul li a:hover{
+        color:#ff6700;
+    }
+    .foot .service ul li:nth-of-type(5){
+        border-right:0;
+    }
+    .foot .service_item{
+        padding:40px 0;overflow: hidden;
+    }
+    .foot .service_item dl{
+    width:160px;float:left;
+    }
+    .foot .service_item dl dt{
+        font-size: 16px;margin:-1px 0 26px 0;
+    }
+    .foot .service_item dl dd{
+        margin-top:10px;font-size: 14px;
+    }
+    .foot .service_item_right .follow a{
+        margin-left:6px;
+    }
+    .foot .service_item_right{
+        font-size: 12px;float:right;width:252px; height:110px;border-left:1px solid #e0e0e0;
+    }
+    .foot .service_item_right p{
+        margin-bottom: 5px;
+    }
+    .foot .service_item_right .phone{
+        font-size: 18px;color:#ff7334;
+    }
+    .foot .service_item_right .btn_worker{
+        font-size: 16px;color:#ff7334;line-height: 30px;display: block;width:120px;height:30px;
+        box-sizing: border-box;border:1px solid #ff7334;margin:0 auto;
+    }
+    .foot .service_item_right .btn_worker:hover{
+        background:#f25807;color:white;
+    }
+    .foot .service_item_right .follow{
+        margin-top:10px;
+    }
+    .foot .service_item_right .follow .iconfont{
+        font-size: 20px;
+    }
+    .foot .service_item_right .follow a:hover{
+        color:#ff7334;
+    }
+    .home_tool{
+        position: fixed;right:40px;top:350px;text-align: center;
+    }
+    .home_tool a{
+    display:block;width:27px;height:42px;border:1px solid #f5f5f5;margin-top:-1px;
+    }
+    .home_tool .iconfont{
+        padding:10px 0;width:20px;height:20px;
+    }
+    .home_tool a:hover{
+        color:#ff7334;
+    }
+    .home_tool a:nth-of-type(6){
+        margin-top:14px;
+    }
+    footer{
+        font-size: 12px;
+        height:247px;width:100%;background: #fafafa;padding:30px 0;box-sizing: border-box;
+    }
+    footer .foot_head .logo{
+        width:57px;height:57px;background:#ff7334 ;margin-right:10px;float:left;
+    }
+    footer .foot_head .info_text{
+        float:left;
+    }
+    footer .foot_head .info_text p span{
+        color:#cab7b7;padding:0 2px;
+    }
+    footer .foot_head .info_text p:nth-of-type(1) a{
+        color:black;
+    }
+    footer .foot_head .info_text p a:hover{
+        color:#ff7334;
+    }
+    footer .foot_head .info_text p:nth-of-type(2){
+        color:#b7b0b0;
+    }
+    footer .foot_head .info_text p:nth-of-type(2) a{
+        color:#b7b0b0;
+    }
+    footer .foot_head .info_text p:nth-of-type(2) a:hover{
+        color:#ff7334;
+    }
+    footer .info_links{
+        padding-left:67px;padding-top:4px;width:1226px;display: block;overflow: hidden;box-sizing: border-box;
+    }
+    footer .info_links a{
+        display: inline-block;vertical-align: bottom;
+    }
+    footer .info_links a img{
+        width:85px;height:33px;
+    }
+    footer .info_links a.safe-auth img{
+        width:106px;height:40px;
+    }
+    footer .info_links a:last-child img:last-child{
+        display: none;
+    }

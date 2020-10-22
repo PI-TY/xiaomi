@@ -63,7 +63,7 @@
                     </div>
                     </span>
                     <span><a href="q">消息通知</a></span>
-                    <span class='car'><a href="./cart.html" class='cart-a'>购物车（0）</a>
+                    <span class='car'><a href="./cart.html" class='cart-a iconfont'>&#xe63e;购物车（0）</a>
                         <div class="cart-menu">
                             <div class="menu-content">
                                 <ul class='cart-list hide'></ul>
@@ -540,10 +540,23 @@
         </div>
         <script>
             // var ze = true;
-            // $('.nav-items').mouseenter(function(){
-            //     if(ze){
+            // if(ze){
+            //     $('.nav-items').mouseenter(function(){
             //         ze=false;
             //         $(this).children().eq(1).stop().slideDown(500,'linear');
+            //     })
+            // }else{
+            //     $(this).children().eq(1).css('display','block');
+            // };
+            // $('.nav-items').parent().mouseleave(function(){
+            //     console.log($(this).children().children());
+            //     ze=true;
+            //     $('.slide-down').children().children().eq(odd).slideUp(500,'linear');
+            // })
+            
+            // $('.nav-items').mouseenter(function(){
+            //     if(ze){
+                    
             //     }else{
             //         $(this).children().eq(1).css('display','block');
             //     }
@@ -559,32 +572,32 @@
             <div class="swiper-container" id='swiper1'>
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <a href="javascript:">
+                        <a href="./detailpage.html?valId=4">
                             <img src="../images/1.png" alt="">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="javascript:">
+                        <a href="./detailpage.html?valId=4">
                             <img src="../images/2.png" alt="">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="javascript:">
+                        <a href="./detailpage.html?valId=4">
                             <img src="../images/3.png" alt="">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="javascript:">
+                        <a href="./detailpage.html?valId=4">
                             <img src="../images/4.png" alt="">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="javascript:">
+                        <a href="./detailpage.html?valId=4">
                             <img src="../images/5.png" alt="">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="javascript:">
+                        <a href="./detailpage.html?valId=4">
                             <img src="../images/6.png" alt="">
                         </a>
                     </div>
@@ -1807,11 +1820,11 @@
         <div class='ce2'>
             <ul class='ce2_ul1'>
                 <li><a href="#"><span  class='iconfont'>&#xe64b;</span><br>小米秒杀</a></li>
-                <li><a href="#"><span  class='iconfont'>&#xe64b;</span><br>小米秒杀</a></li>
-                <li><a href="#"><span  class='iconfont'>&#xe64b;</span><br>小米秒杀</a></li>
-                <li><a href="#"><span  class='iconfont'>&#xe64b;</span><br>小米秒杀</a></li>
-                <li><a href="#"><span  class='iconfont'>&#xe64b;</span><br>小米秒杀</a></li>
-                <li><a href="#"><span  class='iconfont'>&#xe64b;</span><br>小米秒杀</a></li>
+                <li><a href="#"><span  class='iconfont'>&#xe646;</span><br>小米秒杀</a></li>
+                <li><a href="#"><span  class='iconfont'>&#xe62b;</span><br>小米秒杀</a></li>
+                <li><a href="#"><span  class='iconfont'>&#xe628;</span><br>小米秒杀</a></li>
+                <li><a href="#"><span  class='iconfont'>&#xe62a;</span><br>小米秒杀</a></li>
+                <li><a href="#"><span  class='iconfont'>&#xe665;</span><br>小米秒杀</a></li>
             </ul>
             <ul class='ce2_ul2'>
                 <li><a href="#"><img src="../images/c0c05274f2fbb55fbccb89622f798907.jpg" alt=""></a></li>
@@ -1825,8 +1838,8 @@
             <div class='se1_hd'>
                 <h2>小米闪购</h2>
                 <div>
-                    <span class='prev'><a href="javascript:" class='iconfont'>&#xe605;</a></span>
-                    <span class='next'><a href="javascript:" class='iconfont'>&#xe601;</a></span>
+                    <span class='prev'><a href="javascript:" class='iconfont'>&#xe61f;</a></span>
+                    <span class='next'><a href="javascript:" class='iconfont'>&#xe630;</a></span>
                 </div>
             </div>
             <div class='row'>
@@ -1839,10 +1852,10 @@
                         function doubleNum(i){
                                return i < 10 ? '0' + i : i+'';
                         }
+                        var endtime = new Date("2020/10/22,6:52:00").getTime();
                         function countDown(){
-                           var nowtime = new Date();
-                           var endtime = new Date("2020/10/19,18:00:00");                        
-                           var lefttime = parseInt((endtime.getTime() - nowtime.getTime()))/1000;
+                           var nowtime = new Date().getTime();
+                           var lefttime = parseInt((endtime - nowtime))/1000;
                            var hour = doubleNum(parseInt(lefttime / (60*60)));
                            var min = doubleNum(parseInt(lefttime / 60 % 60));
                            var sec = doubleNum(parseInt(lefttime % 60));
@@ -1850,8 +1863,33 @@
                            $('.row .row_1 .min').html(min);
                            $('.row .row_1 .sec').html(sec);
                            if(lefttime <= 0 ){
-                               $('.row .row_1 h6').html('活动已结束');
-                               return;
+                            $('.row .row_1 .hour').html(00);
+                           $('.row .row_1 .min').html(00);
+                           $('.row .row_1 .sec').html(00);
+                               $('.row .row_1 h6').html('距离开始还有');
+                               countStart();
+                               function countStart(){
+                                  nowtime = new Date().getTime();
+                                  var starttime = endtime + 2*3600*1000;
+                                  var reachtime = parseInt((starttime - nowtime))/1000;
+                                  var hours = doubleNum(parseInt(reachtime / (60*60)));
+                                  var mins = doubleNum(parseInt(reachtime / 60 % 60));
+                                  var secs = doubleNum(parseInt(reachtime % 60));
+                                  $('.row .row_1 .hour').html(hours);
+                                  $('.row .row_1 .min').html(mins);
+                                  $('.row .row_1 .sec').html(secs);
+                                  if(reachtime <= 0){
+                                    $('.row .row_1 .hour').html('00');
+                                    $('.row .row_1 .min').html('00');
+                                    $('.row .row_1 .sec').html('00');
+                                    $('.row .row_1 h6').html('距离结束还有');
+                                    endtime = starttime + 4*3600*1000;
+                                    countDown();
+                                    return;
+                                  }
+                                  setTimeout(countStart,1000);
+                              }
+                              return;
                            }
                            setTimeout(countDown,1000);
                         }
@@ -2001,7 +2039,6 @@
                       
                     })        
                     </script>
-             
             </ul>
         </div>
         
@@ -2998,12 +3035,12 @@
         });
     </script>
     <div class='home_tool'>
-        <a href="" class='iconfont tool'>&#xe647;</a>
-        <a href="" class='iconfont tool'>&#xe647;</a>
-        <a href="" class='iconfont tool'>&#xe647;</a>
-        <a href="" class='iconfont tool'>&#xe647;</a>
-        <a href="" class='iconfont tool'>&#xe647;</a>
-        <a href="" class='iconfont tool tag'>&#xe613;</a>
+        <a href="" class='iconfont tool'>&#xe63c;</a>
+        <a href="" class='iconfont tool'>&#xe651;</a>
+        <a href="" class='iconfont tool'>&#xe623;</a>
+        <a href="" class='iconfont tool'>&#xe61e;</a>
+        <a href="" class='iconfont tool'>&#xe63e;</a>
+        <a href="" class='iconfont tool tag'>&#xe605;</a>
     </div>
     <div class='foot'>
         <div class='footer main'>
@@ -3046,7 +3083,7 @@
                 <a href=""><img src="../images/v-logo-2.png" alt=""></a>
                 <a href=""><img src="../images/v-logo-1.png" alt=""></a>
                 <a href=""><img src="../images/ba10428a4f9495ac310fd0b5e0cf8370.png" alt=""></a>
-                <a href=""><img src="../images/da4f8a2a1fb02581416eec9f21935e4d.png" alt="" class='img1'>
+                <a href="" class='safe-auth'><img src="../images/da4f8a2a1fb02581416eec9f21935e4d.png" alt="" class='img1'>
                     <img src="../images/6b66affe-4efc-46c6-9547-d65763b1800d.png" alt="" class='img2'>
                 </a>
                 <script>

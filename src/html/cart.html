@@ -380,6 +380,7 @@
         <script>
             num();
             function num(){
+                var total = 0;
                 $.ajax({
                     url:'http://127.0.0.1/xiaomi/src/interface/showlist.php',
                     success:function(res){
@@ -388,9 +389,11 @@
                             var shoparr = res.data;
                             if(shoparr){
                                 $.each(shoparr,function(i,val){
+                                    total+= parseInt(val.product_num);
                                     number += val.product_price*val.product_num;
                            })
                            $('.total-price').children('em').html(number);
+                           $('.cart-totle').children().eq(0).html(total);
                             }
                         }
                     },
@@ -420,7 +423,7 @@
                                                         <i class='iconfont icon-checkbox icon-checkbox-selected'>√</i>
                                                     </div>
                                                     <div class="col col-img">
-                                                        <a href="./detailpage.html">
+                                                        <a href="./detailpage.html?valId=${item.product_id}">
                                                             <img src="${item.product_img}" alt="${item.product_name}" width='80px' height='80px'>
                                                         </a>
                                                     </div>
@@ -439,7 +442,8 @@
                                                             <a href="javascript:;" class='add'>+</a>
                                                         </div>
                                                     </div>
-                                                    <div class="col col-total">${item.product_price*item.product_num}元
+                                                    <div class="col col-total">
+                                                        <span>${item.product_price*item.product_num}</span>元
                                                         <div class="pre-info"></div>
                                                     </div>
                                                     <div class="col col-action">
@@ -453,26 +457,49 @@
                             })
                             }
                             $(function(){
-                                $('.col-check i').addClass('icon-checkbox-selected');
+                                var covering = $('.total-price').children('em').html();
+                                var select = $('.cart-totle').children().eq(0).html();
+                                var selected = select;
+                                var calculate = covering;
+                                $('.cart-totle').children().eq(1).html(select);
+                               $('.col-check i').addClass('icon-checkbox-selected');
+                               $('.list-item').removeClass('has');
                                $('.list-head .col-check').on('click','i',function(){
                                    if($(this).hasClass('icon-checkbox-selected')){
                                            $('.col-check i').removeClass('icon-checkbox-selected');
+                                           $('.list-item').addClass('has');
                                            $('.cart-bar .total-price em').html(0);
+                                           $('.cart-totle').children().eq(1).html(0)
                                        }else{
                                            $('.col-check i').addClass('icon-checkbox-selected');
-                                           
+                                           $('.list-item').removeClass('has');
+                                           $('.cart-totle').children().eq(1).html(select);
+                                           $('.cart-bar .total-price em').html(covering);
                                        }
                                });
                                $('.item-table .col-check').on('click','i',function(){
-                                   // if(!$(this).siblings().hasClass('icon-checkbox-selected')){
-                                   //     head = 0;
-                                   // }
                                        if($(this).hasClass('icon-checkbox-selected')){
                                            $(this).removeClass('icon-checkbox-selected');
-                                          // $('.cart-bar .total-price em').html($('.total-price').children('em').html()-$('.item-row .col-total').html());
+                                           $(this).parents('.list-item').addClass('has');
                                            $('.list-head .col-check i').removeClass('icon-checkbox-selected');
+                                           calculate = calculate - $(this).parent().siblings('.col-total').children().eq(0).html();
+                                           selected = selected-parseInt($(this).parent().siblings('.col-num').children().children().eq(1).val());
+                                           $('.cart-bar .total-price em').html(calculate);
+                                           $('.cart-totle').children().eq(1).html(selected);
                                        }else{
+                                           $(this).parents('.list-item').removeClass('has');
                                            $(this).addClass('icon-checkbox-selected');
+                                           selected = selected+parseInt($(this).parent().siblings('.col-num').children().children().eq(1).val());
+                                           calculate = calculate + parseInt($(this).parent().siblings('.col-total').children().eq(0).html());
+                                           $('.cart-bar .total-price em').html(calculate);
+                                           $('.cart-totle').children().eq(1).html(selected);
+                                           if($(this).parents('.list-item').siblings().hasClass('has')){
+                                            $('.list-head .col-check i').removeClass('icon-checkbox-selected');
+                                           }else{
+                                            $('.col-check i').addClass('icon-checkbox-selected');
+                                            $('.cart-bar .total-price em').html(covering);
+                                            $('.cart-totle').children().eq(1).html(selected);
+                                           }
                                            //$('.cart-bar .total-price em').html($('.item-row .col-total').html()+$('.total-price').children('em').html());
                                        }
                                });

@@ -1,35 +1,48 @@
 html,body{
     width:100%;
 }
-.h_logo a{
-    display:block;width:200px;height:98px;margin-left: 120px ;
-}
-.h_logo .logo_img{
-    width:57px;height:57px;background: #f56600;float:left;margin-top:16px;
-}
-.h_logo .logo_bank{
-    float:right;width:130px;margin-top:16px;
-}
-.h_logo .logo_bank h1{
-    color:#333333;
-}
-.h_logo .logo_bank span{
-    font-size: 12px;margin-top:5px;color:#8f8f8f;
-    display:inline-block;margin-left:-16px;
-      transform: scale(0.8);
-}
+.h_logo{
+    a{
+        display:block;width:200px;height:98px;margin-left: 120px ;
+    }
+    .logo_img{
+        width:57px;height:57px;background: #f56600;float:left;margin-top:16px;
+    }
+    .logo_bank{
+        float:right;width:130px;margin-top:16px;
+        h1{
+            color:#333333;
+        }
+        span{
+            font-size: 12px;margin-top:5px;color:#8f8f8f;
+            display:inline-block;margin-left:-16px;
+              transform: scale(0.8);
+        }
+    }
+} 
 .login_banner a{
     display: block;height:588px;width:100%;background:#e6ffff ;position: relative;
 }
 .login{
    width:410px;height:526px;margin-left:850px;margin-top:30px;position: absolute;background: white;
    top:130px;right:100px;
-}
-.login .nav_tab{
+   .nav_tab{
     height:82px;
-}
-.login .nav_tab div a{
-    font-size: 26px;line-height: 82px;
+    div a{
+        font-size: 26px;line-height: 82px;
+    }
+   }
+   .nav_tab{
+       div:nth-of-type(1){
+        margin-left:58px;
+       }
+       span{
+        display: inline-block;width:2px;height:29px;margin:26.5px 40px;float:left;background: black;
+       }
+       div a:hover{
+        color:coral;
+      }
+   } 
 }
 .account_login{
     float:left;
@@ -37,62 +50,53 @@ html,body{
 .sweep_login{
     float:left;
 }
-.login .nav_tab div:nth-of-type(1){
-    margin-left:58px;
-}
-.login .nav_tab span{
-    display: inline-block;width:2px;height:29px;margin:26.5px 40px;float:left;background: black;
-}
-.login .nav_tab div a:hover{
-    color:coral;
-}
 .login form{
     text-align: center;
-}
-.login form input{
-    width:346px;height:48px;outline-style: none;text-align: left;color:#9b9b9b;box-sizing: border-box;padding:13px 16px 13px 14px;margin-bottom: 14px;
-}
-.login form .sub{
-    width:348px; height:50px;line-height: 50px;color:white;display: block;margin:10px auto 14px;background: #ff6700;border: none;
-}
-.login form span a{
-    color:#ff6700;
-}
-.login form .reg_links{
-    margin-top: 30px;
-}
-.login form .reg_links span{
-    padding:0 5px;color:#8f8f8f;
-}
-.login form .reg_links a:hover{
-    color:#ff6700;
-}
+    input{
+        width:346px;height:48px;outline-style: none;text-align: left;color:#9b9b9b;box-sizing: border-box;padding:13px 16px 13px 14px;margin-bottom: 14px;
+    }
+    .sub{
+        width:348px; height:50px;line-height: 50px;color:white;display: block;margin:10px auto 14px;background: #ff6700;border: none;
+    }
+    span a{
+        color:#ff6700;
+    }
+    .reg_links{
+        margin-top: 30px;
+        span{
+            padding:0 5px;color:#8f8f8f;
+        }
+        a:hover{
+            color:#ff6700;
+        }
+    }
+} 
 .login .other_login{
     padding-top:123px;text-align: center;
-}
-.login .other_login a{
-    font-size: 20px;color:#ff6700;margin:0 17px;
+    a{
+        font-size: 20px;color:#ff6700;margin:0 17px;
+    }
 }
 .n-footer{
     text-align: center;height:180px;width:100%;
-}
-.n-footer .nf-link{
-    margin-top:100px;
-}
-.n-footer .nf-link ul li{
-   height:19px;display: inline-block;
-}
-.n-footer .nf-link ul li a{
-    display: block;height:19px;font-size:14px; padding:0 10px;border-right:1px solid #758bbc;
-}
-.n-footer .nf-link ul li a:nth-last-of-type(5){
-    border-right:0;
-}
-.n-footer .nf-link ul li a:hover{
-    color:#333333;
-}
-.n-footer .nf-intor{
-    font-size: 14px;color:#757575;
+    .nf-link{
+        margin-top:100px;
+        ul li{
+            height:19px;display: inline-block;
+            a{
+                display: block;height:19px;font-size:14px; padding:0 10px;border-right:1px solid #758bbc;
+                &:nth-last-of-type(5){
+                    border-right:0;
+                }
+                &:hover{
+                    color:#333333;
+                }
+            }
+        }
+    }
+    .nf-intor{
+        font-size: 14px;color:#757575;
+    }
 }
 .alert{
    text-align: center;font-size: 16px;padding:2px;margin:-10px 2px 10px;display:none;

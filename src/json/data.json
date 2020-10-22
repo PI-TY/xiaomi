@@ -32,6 +32,17 @@
             "de3":"../images/detail3-3.jpg",
             "de4":"../images/detail3-4.jpg",
             "de5":"../images/detail3-5.jpg"
+        },
+        {
+            "id":"4",
+            "img":"../images/img3.jpg",
+            "name":"Redmi 10X 5G",
+            "price":"1499",
+            "de1":"../images/detail4-5.jpg",
+            "de2":"../images/detail4-1.jpg",
+            "de3":"../images/detail3-5.jpg",
+            "de4":"../images/detail4-3.jpg",
+            "de5":"../images/detail4-4.jpg"
         }
     ]
 }

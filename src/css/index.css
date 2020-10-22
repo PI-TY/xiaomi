@@ -50,7 +50,7 @@ nav .nav2 span.car:hover .cart-a{
 .user:hover .name{
    color:#ff6700;
 }
-.nav2 span:nth-child(2):hover{
+.nav2 span.user:nth-child(2):hover{
     background: white;
 }
 .user-active:hover .iconfont{
@@ -127,7 +127,7 @@ nav .ul1 span{
     font-size: 16px;color:#393f3f;
 }
 nav .ul1 a{
- display:inline-block; height:40px;cursor: pointer;line-height: 40px;font-size: 12px;
+ display:inline-block; height:40px;cursor: pointer;line-height: 40px;font-size: 14px;
 }
 nav .ul1 a:hover{
     color:white;
@@ -136,7 +136,7 @@ nav .nav2{
     float:right;
 }
 nav .nav2 span a{
-    display:inline-block; height:40px;cursor: pointer;line-height: 40px;
+    display:inline-block; height:40px;cursor: pointer;line-height: 40px;font-size: 14px;
 }
 nav .nav2 .user{
     display: none;float:left;
@@ -154,10 +154,12 @@ nav .nav2 span:nth-child(3) a:hover{
     color:white;
 }
 nav .nav2 span.car a{
-    display:inline-block; height:40px;cursor: pointer;width:100px;text-align: center;background:#424242;
+    display:inline-block; height:39px;cursor: pointer;text-align: center;background:#424242;
 }
-
-nav .nav2 span.car a:hover{
+nav .nav2 span:nth-of-type(3){
+    font-size: 14px;
+}
+nav .nav2 span.car:hover a{
     background:white;
 }
 a{
@@ -346,19 +348,19 @@ display:inline-block;width:46px;height:46px;background: #5c534e;color:white;
     width:15px;display:inline-block;
 }
 .se1 .flash-list{
-    width:978px;overflow: hidden;
+    width:978px;margin-left:14px;float:left;
 }
 #swiper2 .swiper-slide{
-    float:left;
+    float:left;width:234px;
 }
 #swiper2 .swiper-button-prev{
     position: absolute;
 }
 .se1 .se1_ul1{
-    float:left;margin-left:15px;width:978px;overflow: hidden;
+    float:left;width:978px;overflow: hidden;
 }
 .se1 .se1_ul1 li{
-    width:234px;height:339px;background: white;margin-right:14px;text-align: center;border-top:1px solid blue;
+    width:234px;height:339px;background: white;text-align: center;border-top:1px solid blue;
     float:left;
 }
 .se1 .se1_ul1 li img{
@@ -543,13 +545,13 @@ width:160px;float:left;
     color:#ff7334;
 }
 .home_tool{
-    position: fixed;right:40px;top:350px;text-align: center;
+    position: fixed;right:32px;top:350px;text-align: center;
 }
 .home_tool a{
-display:block;width:27px;height:42px;border:1px solid #f5f5f5;margin-top:-1px;
+display:block;width:27px;height:22px;border:1px solid #f5f5f5;margin-top:-1px;background: white;
 }
 .home_tool .iconfont{
-    padding:10px 0;width:20px;height:20px;
+    padding:10px 0;font-size: 20px;
 }
 .home_tool a:hover{
     color:#ff7334;
@@ -594,7 +596,7 @@ footer .info_links a{
 footer .info_links a img{
     width:85px;height:33px;
 }
-footer .info_links a:last-child img{
+footer .info_links a.safe-auth img{
     width:106px;height:40px;
 }
 footer .info_links a:last-child img:last-child{
