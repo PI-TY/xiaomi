@@ -331,7 +331,7 @@
                             </div>
                             <div class="cart-goods-list">
                                 <div class="list-head clearfix">
-                                    <div class="col col-check">
+                                    <div class="col col-check" id='all'>
                                         <i class='iconfont icon-checkbox'>√</i>
                                         全选
                                     </div>
@@ -382,7 +382,7 @@
             function num(){
                 var total = 0;
                 $.ajax({
-                    url:'http://127.0.0.1/xiaomi/src/interface/showlist.php',
+                    url:'../interface/showlist.php',
                     success:function(res){
                         var number = 0;
                         if(res.code){
@@ -393,6 +393,8 @@
                                     number += val.product_price*val.product_num;
                            })
                            $('.total-price').children('em').html(number);
+                           console.log(total)
+                            $('.cart-totle').children().eq(1).html(total);
                            $('.cart-totle').children().eq(0).html(total);
                             }
                         }
@@ -454,25 +456,31 @@
                                         </div>
                                     </div>
                                 `);
+
                             })
                             }
                             $(function(){
                                 var covering = $('.total-price').children('em').html();
                                 var select = $('.cart-totle').children().eq(0).html();
                                 var selected = select;
+                                console.log(select)
                                 var calculate = covering;
-                                $('.cart-totle').children().eq(1).html(select);
                                $('.col-check i').addClass('icon-checkbox-selected');
                                $('.list-item').removeClass('has');
                                $('.list-head .col-check').on('click','i',function(){
                                    if($(this).hasClass('icon-checkbox-selected')){
+                                       
                                            $('.col-check i').removeClass('icon-checkbox-selected');
                                            $('.list-item').addClass('has');
+                                           calculate =0;
                                            $('.cart-bar .total-price em').html(0);
+                                           selected = 0;
                                            $('.cart-totle').children().eq(1).html(0)
                                        }else{
                                            $('.col-check i').addClass('icon-checkbox-selected');
                                            $('.list-item').removeClass('has');
+                                           selected = select;
+                                           calculate =covering;
                                            $('.cart-totle').children().eq(1).html(select);
                                            $('.cart-bar .total-price em').html(covering);
                                        }
@@ -489,8 +497,8 @@
                                        }else{
                                            $(this).parents('.list-item').removeClass('has');
                                            $(this).addClass('icon-checkbox-selected');
-                                           selected = selected+parseInt($(this).parent().siblings('.col-num').children().children().eq(1).val());
-                                           calculate = calculate + parseInt($(this).parent().siblings('.col-total').children().eq(0).html());
+                                           selected = parseInt(selected)+parseInt($(this).parent().siblings('.col-num').children().children().eq(1).val());
+                                           calculate = parseInt(calculate) + parseInt($(this).parent().siblings('.col-total').children().eq(0).html());
                                            $('.cart-bar .total-price em').html(calculate);
                                            $('.cart-totle').children().eq(1).html(selected);
                                            if($(this).parents('.list-item').siblings().hasClass('has')){
@@ -528,6 +536,7 @@
                         success:function(res){
                             if(res.code){
                                 num();
+                                $('.list-head .col-check i').removeClass('icon-checkbox-selected');
                                 showShop();
                             }
                         },
@@ -544,6 +553,7 @@
                             console.log(res)
                             if(res.code){
                                 num();
+                                $('.list-head .col-check i').removeClass('icon-checkbox-selected');
                                 showShop();
                             }
                         },
@@ -561,6 +571,7 @@
                     success:function(res){
                         console.log('po');
                         if(res.code){
+                            $('.list-head .col-check i').removeClass('icon-checkbox-selected');
                             num();
                             showShop();
                         }
